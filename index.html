@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+  <head>
+    <script data-require="angular.js@1.x" data-semver="1.4.3" src="https://code.angularjs.org/1.4.3/angular.js"></script>
+    <script data-require="ui-bootstrap@*" data-semver="0.13.0" src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.min.js"></script>
+    <script data-require="jquery@*" data-semver="2.1.4" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet/less" href="style.less" />
+    <script src="https://rawgit.com/nnnick/Chart.js/master/Chart.min.js"></script>
+    <script src="https://rawgit.com/jtblin/angular-chart.js/master/dist/angular-chart.min.js"></script>
+   <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.5/less.js"></script> -->
+  </head>
+
+  <body>
+    
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+          <span class="sr-only">Cambiar Navegacion</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="#/" class="navbar-brand">APItems</a>
+      </div>
+      <div id="menu" class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="#/">Campeones</a></li>
+          <li><a href="#/">About</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div style=" margin-top:90px;" class="container">
+        <div ng-controller="Ctrl">
+          <tabset >
+            <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disable="tab.disabled">
+              <div ng-include="tab.content"></div>
+            </tab>
+          </tabset>
+        </div>
+        <div ng-controller="Ctrl">
+            <div class="btn-group">
+                <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Normal'">Normal</label>
+                <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Ranked'">Ranked</label>
+            </div>
+        </div>
+    </div>
+
+      
+      
+    <script src="https://code.angularjs.org/1.4.3/angular-route.js"></script>
+    <script src="script.js"></script>
+    <script src="ctrl.js"></script>
+  </body>
+
+</html>
