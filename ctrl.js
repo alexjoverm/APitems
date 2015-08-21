@@ -14,6 +14,7 @@ angular.module('myApp').controller('Ctrl', function ($scope, $routeParams, $wind
   ];
   //botones
   $scope.radioModel = 'Normal';
+  $scope.radioModel2 = 'Bronze';
 
 });
 

@@ -1,33 +1,28 @@
 
   
   <div class="container">
-    <!--<br><p>Click all the fruits that you like</p>-->
-    <div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-default">
-            <input type="checkbox" name="fruit" id="apple" value="apple">
-            <img src="http://ih0.redbubble.net/image.15338834.5449/fc,550x550,white.u1.jpg">
-        </label>
-        <label class="btn btn-default">
-            <input type="checkbox" name="fruit" id="pear" value="pear">
-            <img src="http://img4.wikia.nocookie.net/__cb20130319091242/leagueoflegends/images/c/c5/Rabadon's_Deathcap_item.png">
-        </label>
-        <label class="btn btn-default">
-            <input type="checkbox" name="fruit" id="orange" value="orange">
-            <img src="http://img4.wikia.nocookie.net/__cb20130319091242/leagueoflegends/images/c/c5/Rabadon's_Deathcap_item.png">
-        </label>
-        <label class="btn btn-default">
-            <input type="checkbox" name="fruit" id="orange" value="orange">
-            <img src="http://img4.wikia.nocookie.net/__cb20130319091242/leagueoflegends/images/c/c5/Rabadon's_Deathcap_item.png">
-        </label>
-        <label class="btn btn-default">
-            <input type="checkbox" name="fruit" id="orange" value="orange">
-            <img src="http://img4.wikia.nocookie.net/__cb20130319091242/leagueoflegends/images/c/c5/Rabadon's_Deathcap_item.png">
-        </label>
-        <label class="btn btn-default">
-            <input type="checkbox" name="fruit" id="orange" value="orange">
-            <img src="http://img4.wikia.nocookie.net/__cb20130319091242/leagueoflegends/images/c/c5/Rabadon's_Deathcap_item.png">
-        </label>
-    </div>
+        <div ng-controller="Ctrl">
+          <tabset >
+            <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disable="tab.disabled">
+              <div ng-include="tab.content"></div>
+            </tab>
+          </tabset>
+        </div>
+        <div ng-controller="Ctrl">
+            <div class="btn-group">
+                <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Normal'">Normal</label>
+                <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Ranked'">Ranked</label>
+            </div>
+            <div  class="btn-group">
+                <label class="btn btn-success" ng-model="radioModel2" btn-radio="'Bronze'">Bronze</label>
+                <label class="btn btn-success" ng-model="radioModel2" btn-radio="'Silver'">Silver</label>
+                <label class="btn btn-success" ng-model="radioModel2" btn-radio="'Gold'">Gold</label>
+                <label class="btn btn-success" ng-model="radioModel2" btn-radio="'Platinium'">Platinium</label>
+                <label class="btn btn-success" ng-model="radioModel2" btn-radio="'Diamond'">Diamond</label>
+                <label class="btn btn-success" ng-model="radioModel2" btn-radio="'Master'">Master</label>
+                <label class="btn btn-success" ng-model="radioModel2" btn-radio="'Challenger'">Challenger</label>  
+            </div>
+        </div>
   </div>
 
   

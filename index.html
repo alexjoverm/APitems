@@ -24,7 +24,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a href="#/" class="navbar-brand">APItems</a>
+        <a href="/index.html" class="navbar-brand">APItems</a>
       </div>
       <div id="menu" class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
@@ -34,23 +34,8 @@
       </div>
     </nav>
     <div style=" margin-top:90px;" class="container">
-        <div ng-controller="Ctrl">
-          <tabset >
-            <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disable="tab.disabled">
-              <div ng-include="tab.content"></div>
-            </tab>
-          </tabset>
-        </div>
-        <div ng-controller="Ctrl">
-            <div class="btn-group">
-                <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Normal'">Normal</label>
-                <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Ranked'">Ranked</label>
-            </div>
-        </div>
+        <ng-view></ng-view>
     </div>
-
-      
-      
     <script src="https://code.angularjs.org/1.4.3/angular-route.js"></script>
     <script src="script.js"></script>
     <script src="ctrl.js"></script>
