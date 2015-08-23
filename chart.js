@@ -79,7 +79,9 @@
 			scaleStartValue: null,
 
 			// String - Colour of the scale line
-			scaleLineColor: "rgba(0,0,0,.1)",
+			
+            scaleLineColor: "#fff",
+            //scaleLineColor: "rgba(0,0,0,.1)",
 
 			// Number - Pixel width of the scale line
 			scaleLineWidth: 1,
@@ -106,7 +108,7 @@
 			scaleFontStyle: "normal",
 
 			// String - Scale label font colour
-			scaleFontColor: "#666",
+			scaleFontColor: "#FFFFFF",
 
 			// Boolean - whether or not the chart should be responsive and resize when the browser does.
 			responsive: false,
@@ -2036,7 +2038,7 @@
 		scaleShowGridLines : true,
 
 		//String - Colour of the grid lines
-		scaleGridLineColor : "rgba(0,0,0,.05)",
+		scaleGridLineColor : "#4B4747",
 
 		//Number - Width of the grid lines
 		scaleGridLineWidth : 1,
