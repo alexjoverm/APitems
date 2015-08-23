@@ -2,14 +2,19 @@
   
   <div class="container">
     <!--<br><p>Click all the fruits that you like</p>-->
-        <div ng-controller="Ctrl">
-          <tabset >
+        <div>
+
+            <!--<canvas height="" class="chart chart-bar" data="winrateData.datasets.data" labels="winrateData.labels"></canvas>-->
+
+          <tabset>
             <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disable="tab.disabled">
-              <div ng-include="tab.content"></div>
+
+                <canvas width="3" height="1" class="chart chart-bar" data="tab.data.data" labels="tab.data.labels"></canvas>
+
             </tab>
           </tabset>
         </div>
-        <div ng-controller="Ctrl">
+        <div>
             <div class="btn-group">
                 <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Normal'">Normal</label>
                 <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Ranked'">Ranked</label>
@@ -21,7 +26,7 @@
                 <label class="btn btn-success" ng-model="radioModel2" btn-radio="'Platinium'">Platinium</label>
                 <label class="btn btn-success" ng-model="radioModel2" btn-radio="'Diamond'">Diamond</label>
                 <label class="btn btn-success" ng-model="radioModel2" btn-radio="'Master'">Master</label>
-                <label class="btn btn-success" ng-model="radioModel2" btn-radio="'Challenger'">Challenger</label>  
+                <label class="btn btn-success" ng-model="radioModel2" btn-radio="'Challenger'">Challenger</label>
             </div>
         </div>
   </div>

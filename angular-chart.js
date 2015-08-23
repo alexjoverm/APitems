@@ -35,13 +35,13 @@
   angular.module('chart.js', [])
     .provider('ChartJs', ChartJsProvider)
     .factory('ChartJsFactory', ['ChartJs', '$timeout', ChartJsFactory])
-    .directive('chartBase', function (ChartJsFactory) { return new ChartJsFactory(); })
-    .directive('chartLine', function (ChartJsFactory) { return new ChartJsFactory('Line'); })
-    .directive('chartBar', function (ChartJsFactory) { return new ChartJsFactory('Bar'); })
-    .directive('chartRadar', function (ChartJsFactory) { return new ChartJsFactory('Radar'); })
-    .directive('chartDoughnut', function (ChartJsFactory) { return new ChartJsFactory('Doughnut'); })
-    .directive('chartPie', function (ChartJsFactory) { return new ChartJsFactory('Pie'); })
-    .directive('chartPolarArea', function (ChartJsFactory) { return new ChartJsFactory('PolarArea'); });
+    .directive('chartBase', ['ChartJsFactory', function (ChartJsFactory) { return new ChartJsFactory(); }])
+    .directive('chartLine', ['ChartJsFactory', function (ChartJsFactory) { return new ChartJsFactory('Line'); }])
+    .directive('chartBar', ['ChartJsFactory', function (ChartJsFactory) { return new ChartJsFactory('Bar'); }])
+    .directive('chartRadar', ['ChartJsFactory', function (ChartJsFactory) { return new ChartJsFactory('Radar'); }])
+    .directive('chartDoughnut', ['ChartJsFactory', function (ChartJsFactory) { return new ChartJsFactory('Doughnut'); }])
+    .directive('chartPie', ['ChartJsFactory', function (ChartJsFactory) { return new ChartJsFactory('Pie'); }])
+    .directive('chartPolarArea', ['ChartJsFactory', function (ChartJsFactory) { return new ChartJsFactory('PolarArea'); }]);
 
   /**
    * Wrapper for chart.js
@@ -150,7 +150,7 @@
           }
 
           function createChart (type) {
-            if (isResponsive(type, scope) && container.clientHeight === 0) {
+            if (isResponsive(type, scope) && elem[0].clientHeight === 0 && container.clientHeight === 0) {
               return $timeout(function () {
                 createChart(type);
               }, 50);
