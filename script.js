@@ -5,12 +5,12 @@ angular.module('myApp').config(function($routeProvider){
     .when('/',
       {
         controller: 'Ctrl',
-        templateUrl: 'main.html'
+        templateUrl: 'items.html'
       })
-    .when('/myApp',
+    .when('/champions',
       {
-          controller: 'Ctrl',
-          templateUrl: 'myApp.html'
+          controller: 'Ctrl2',
+          templateUrl: 'champions.html'
       })
     .otherwise({ redirectTo: '/' });
 });
