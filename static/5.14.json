@@ -1,0 +1,214 @@
+{
+  "totalPlayed"  : 12104,
+  "totalBannable": 356,
+  "totalRanked"  : 12104,
+  "items" : [
+    {
+      "id"      : 22,
+      "name"    : "METRALLET",
+      "img_url" : "images/img3.png",
+      "pickrate": 24.38473,
+      "winrate" : 96.45645,
+      "normal" : {
+        "pickrate": 41.38473,
+        "banrate" : 99.234232,
+        "winrate" : 12.45645,
+        "leagues" : [
+          {
+            "id"      : 0,
+            "name"    : "Unranked",
+            "pickrate": 65.38473,
+            "banrate" : 39.234232,
+            "winrate" : 89.45645,
+            "kda"     : 23.432
+          },
+          {
+            "id"      : 7,
+            "name"    : "Challenger",
+            "pickrate": 34.38473,
+            "banrate" : 40.534232,
+            "winrate" : 12.45645,
+            "kda"     : 88.432
+          }
+        ]
+      },
+      "ranked" : {
+        "pickrate": 29.23423,
+        "banrate" : 12.23423,
+        "winrate" : 64.3452,
+        "leagues" : [
+          {
+            "id"      : 2,
+            "name"    : "Silver",
+            "pickrate": 51.38473,
+            "banrate" : 97.234232,
+            "winrate" : 59.45645,
+            "kda"     : 11.432
+          }
+        ]
+      }
+
+    },
+    {
+      "id"      : 55,
+      "name"    : "MONGOME",
+      "img_url" : "images/img3.png",
+      "pickrate": 5.38473,
+      "winrate" : 2.45645,
+      "normal" : {
+        "pickrate": 2.38473,
+        "banrate" : 99.234232,
+        "winrate" : 93.45645,
+        "leagues" : [
+          {
+            "id"      : 0,
+            "name"    : "Unranked",
+            "pickrate": 54.38473,
+            "banrate" : 36.234232,
+            "winrate" : 49.45645,
+            "kda"     : 45.432
+          },
+          {
+            "id"      : 5,
+            "name"    : "Diamond",
+            "pickrate": 44.38473,
+            "banrate" : 43.534232,
+            "winrate" : 92.45645,
+            "kda"     : 20.432
+          }
+        ]
+      },
+      "ranked" : {
+        "pickrate": 20.23423,
+        "banrate" : 43.23423,
+        "winrate" : 98.3452,
+        "leagues" : [
+          {
+            "id"      : 2,
+            "name"    : "Silver",
+            "pickrate": 1.38473,
+            "banrate" : 35.234232,
+            "winrate" : 7.45645,
+            "kda"     : 12.432
+          }
+        ]
+      }
+    }
+  ],
+
+  "champions"    : [
+    {
+      "id"     : 32459,
+      "name"   : "Babalunga",
+      "img_url": "images/img1.png",
+      "normal" : {
+        "pickrate": 77.38473,
+        "banrate" : 46.234232,
+        "winrate" : 22.45645,
+        "items"  : [
+          {
+            "id"      : 23,
+            "name"    : "Shotgun",
+            "img_url" : "images/img3.png",
+            "pickrate": 12.38473,
+            "winrate" : 34.45645
+          },
+          {
+            "id"      : 555,
+            "name"    : "Bazooka",
+            "img_url" : "images/img3.png",
+            "pickrate": 73.38473,
+            "winrate" : 55.45645
+          }
+        ],
+        "leagues" : [
+          {
+            "id"      : 0,
+            "name"    : "Unranked",
+            "pickrate": 77.38473,
+            "banrate" : 46.234232,
+            "winrate" : 22.45645,
+            "kda"     : 67.432
+          },
+          {
+            "id"      : 7,
+            "name"    : "Challenger",
+            "pickrate": 37.38473,
+            "banrate" : 16.534232,
+            "winrate" : 62.45645,
+            "kda"     : 44.432
+          }
+        ]
+      },
+      "ranked" : {
+        "pickrate": 99.23423,
+        "banrate" : 65.23423,
+        "winrate" : 88.3452,
+        "items"  : [
+          {
+            "id"      : 23,
+            "name"    : "Shotgun",
+            "img_url" : "images/img3.png",
+            "pickrate": 64.38473,
+            "winrate" : 11.45645
+          }
+        ],
+        "leagues" : [
+          {
+            "id"      : 0,
+            "name"    : "Unranked",
+            "pickrate": 23.38473,
+            "banrate" : 14.234232,
+            "winrate" : 34.45645,
+            "kda"     : 78.432
+          },
+          {
+            "id"      : 2,
+            "name"    : "Silver",
+            "pickrate": 77.38473,
+            "banrate" : 23.234232,
+            "winrate" : 22.45645,
+            "kda"     : 23.432
+          },
+          {
+            "id"      : 7,
+            "name"    : "Challenger",
+            "pickrate": 85.38473,
+            "banrate" : 76.534232,
+            "winrate" : 34.45645,
+            "kda"     : 12.432
+          }
+        ]
+      }
+    },
+    {
+      "id"     : 12345,
+      "name"   : "Mordiscona",
+      "img_url": "images/img2.png",
+      "normal" : {
+        "pickrate": 92.38473,
+        "banrate" : 38.234232,
+        "winrate" : 53.45645,
+        "items"  : [
+          {
+            "id"      : 555,
+            "name"    : "Bazooka",
+            "img_url" : "images/img3.png",
+            "pickrate": 25.38473,
+            "winrate" : 99.45645
+          }
+        ],
+        "leagues" : [
+          {
+            "id"      : 0,
+            "name"    : "Unranked",
+            "pickrate": 27.38473,
+            "banrate" : 73.234232,
+            "winrate" : 63.45645,
+            "kda"     : 61.432
+          }
+        ]
+      }
+    }
+  ]
+}

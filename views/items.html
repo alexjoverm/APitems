@@ -1,0 +1,54 @@
+<div class="col-sm-12">
+
+    <section class="chart-section">
+
+        <div fixed-height=".tab-pane.active" extra-item=".nav-tabs">
+
+            <tabset class="lc-tabs">
+                <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disable="tab.disabled">
+                    <canvas ng-if="tab.active" width="4" height="1" class="chart chart-bar" data="tab.data"
+                            labels="labels" options="options"></canvas>
+                </tab>
+            </tabset>
+
+        </div>
+        <div class="lc-buttons">
+            <div class="btn-group">
+                <label class="btn btn-primary" ng-model="filters.queue" btn-radio="'Normal'">Normal</label>
+                <label class="btn btn-primary" ng-model="filters.queue" btn-radio="'Ranked'">Ranked</label>
+            </div>
+            <div class="btn-group">
+                <label class="btn btn-purple" ng-model="filters.version" btn-radio="'5.11'">5.11</label>
+                <label class="btn btn-purple" ng-model="filters.version" btn-radio="'5.14'">5.14</label>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="list-section">
+        <h3>List of items</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Win rate (%)</th>
+                <th>Pick rate (%)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in items">
+                <td><img class="icon" ng-src="{{item.img_url}}" alt=""/></td>
+                <td>{{item.name}}</td>
+                <td>{{item.winrate | number:2 }}</td>
+                <td>{{item.pickrate | number:2 }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+
+
+
+
+

@@ -1,46 +1,65 @@
 <!DOCTYPE html>
-<html ng-app="myApp">
+<html >
 
-  <head>
-    <script data-require="angular.js@1.x" data-semver="1.4.3" src="https://code.angularjs.org/1.4.3/angular.js"></script>
-    <script data-require="ui-bootstrap@*" data-semver="0.13.0" src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.min.js"></script>
-    <script data-require="jquery@*" data-semver="2.1.4" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="chart.js"></script>
-    <script src="angular-chart.js"></script>
-    <script src="https://code.angularjs.org/1.4.3/angular-route.js"></script>
-    <script src="script.js"></script>
-    <script src="ctrl.js"></script>
-    <link rel="stylesheet" href="bootstrap3.min.css" />
-    <link rel="stylesheet" href="style.css" />
-    <!--<link rel="stylesheet" href="angular-chart.css"/>-->
-  </head>
+<head>
+    <!-- Vendor -->
+    <script src="vendor/angular.js"></script>
+    <script src="vendor/angular-route.js"></script>
+    <script src="vendor/jquery-2.1.4.js"></script>
+    <script src="vendor/bootstrap.js"></script>
+    <script src="vendor/ui-bootstrap-tpls-0.13.3.js"></script>
+    <script src="vendor/chart.js"></script>
+    <script src="vendor/angular-chart.js"></script>
+    <script src="vendor/bootstrap-select.js"></script>
+    <script src="vendor/angular-bootstrap-select.js"></script>
+    <script src="vendor/lodash.js"></script>
 
-  <body>
-    
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="navbar-header">
+
+
+
+    <link rel="stylesheet" href="vendor/bootstrap.css"/>
+    <link rel="stylesheet" href="vendor/theme.css"/>
+    <link rel="stylesheet" href="vendor/angular-chart.css"/>
+    <link rel="stylesheet" href="vendor/bootstrap-select.css"/>
+
+    <!-- Own code -->
+    <script src="app.js"></script>
+    <script src="controllers/championsDetailCtrl.js"></script>
+    <script src="controllers/championsCtrl.js"></script>
+    <script src="controllers/itemsCtrl.js"></script>
+    <script src="factories/chartSvc.js"></script>
+
+
+    <link rel="stylesheet/less" type="text/css" href="style.less"/>
+    <script src="vendor/less.js"></script>
+</head>
+
+<body ng-app="myApp">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
-          <span class="sr-only">Cambiar Navegacion</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
+            <span class="sr-only">Nav</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
         </button>
         <a href="#/" class="navbar-brand">APItems</a>
-      </div>
-      <div id="menu" class="collapse navbar-collapse navbar-ex1-collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="#/champions">Champions</a></li>
-          <li><a href="#/">About</a></li>
-        </ul>
-      </div>
-    </nav>
-    <div style=" margin-top:90px;" class="container">
-        <ng-view></ng-view>
     </div>
-  
+    <div id="menu" class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav">
+            <li><a href="#/champions">Champions</a></li>
+            <li><a href="#/">About</a></li>
+        </ul>
+    </div>
+</nav>
 
-      
-  </body>
+
+<div class="container">
+    <ng-view class="view-container"></ng-view>
+</div>
+
+
+</body>
 
 </html>

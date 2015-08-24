@@ -1,0 +1,47 @@
+
+@cl-main: #9333f9;
+@cl-panel: #32373E;
+
+.view-container{
+    display: block;
+    overflow: hidden;
+    padding: 90px 10px;
+}
+
+.lc-buttons{
+    padding: 24px 0;
+    text-align: center;
+}
+
+.tab-pane{
+    background-color: @cl-panel;
+    padding: 15px;
+    border-radius: 0 5px 5px 5px;
+}
+
+.nav-tabs .active a{
+    background-color: @cl-panel !important;
+    border-color: @cl-panel !important;
+}
+
+.btn-purple{
+    background-color: @cl-main;
+    border-color: lighten(@cl-main, 10%);
+    color: #ddd;
+  &.active{
+    color: #fff;
+    background-color: multiply(@cl-main, #bbb);
+    &:hover, &:hover{ background-color: multiply(@cl-main, #bbb); }
+  }
+  &:hover, &:focus{
+    background-color: multiply(@cl-main, #ccc);;
+    border-color: lighten(@cl-main, 10%);
+  }
+}
+
+.list-section{
+  img{ width: 40px; }
+  table{
+    td{ vertical-align: middle !important; }
+  }
+}
