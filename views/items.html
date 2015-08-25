@@ -12,11 +12,22 @@
             </tabset>
 
         </div>
-        <div class="lc-buttons">
+        <div class="form-inline lc-buttons">
             <div class="btn-group">
                 <label class="btn btn-primary" ng-model="filters.queue" btn-radio="'Normal'">Normal</label>
                 <label class="btn btn-primary" ng-model="filters.queue" btn-radio="'Ranked'">Ranked</label>
             </div>
+            <select class="form-control" ng-model="filters.league">
+                <option>--All--</option>
+                <option>Unranked</option>
+                <option>Bronze</option>
+                <option>Silver</option>
+                <option>Gold</option>
+                <option>Platinium</option>
+                <option>Diamond</option>
+                <option>Master</option>
+                <option>Challenger</option>
+            </select>
             <div class="btn-group">
                 <label class="btn btn-purple" ng-model="filters.version" btn-radio="'5.11'">5.11</label>
                 <label class="btn btn-purple" ng-model="filters.version" btn-radio="'5.14'">5.14</label>

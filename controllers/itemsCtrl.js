@@ -1,7 +1,6 @@
 angular.module('myApp').controller('ItemsCtrl', function ($scope, $timeout, $window, ChartSvc) {
 
-
-
+  
 
     // Filters
     $scope.filters = ChartSvc.filters.items;
@@ -15,8 +14,7 @@ angular.module('myApp').controller('ItemsCtrl', function ($scope, $timeout, $win
 
 
 
-
-
+    console.log($scope.heroImage);
 
     $scope.tabs = [
         { title:'WinRate',  data: $scope.winrateData},

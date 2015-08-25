@@ -57,4 +57,8 @@ angular.module('myApp').config(function ($routeProvider) {
         }
     })
 
-;
+    .controller('NavbarCtrl', function($scope, $location){
+        $scope.isActive = function (viewLocation) {
+            return viewLocation === $location.path();
+        };
+    });

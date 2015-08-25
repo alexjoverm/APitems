@@ -3,7 +3,7 @@ angular.module('myApp').factory('ChartSvc', function ($http, $rootScope) {
     // private
     var arrayQueues = ['normal', 'ranked'];
     var arrayLeagues = ['unranked', 'bronze', 'silver', 'gold', 'platinium', 'diamond', 'master', 'challenger'];
-
+    var versions = ['5_11', '5_14'];
 
     // public
     var api = {};
@@ -20,7 +20,7 @@ angular.module('myApp').factory('ChartSvc', function ($http, $rootScope) {
     api.filters = {
         items    : {
             queue  : 'Normal',
-            league : '--All--',
+            //league : '--All--',
             version: '5.11'
         },
         champions: {
@@ -59,16 +59,45 @@ angular.module('myApp').factory('ChartSvc', function ($http, $rootScope) {
         });
     };
 
+
+
+
+    api.getChampions = function(){
+        var arrayAux = [];
+        var i = 0;
+
+        for (var v in versions){
+
+            console.log(v)
+            console.log(versions[v])
+            for (i in api['json'+versions[v]].champions){
+                var champ = angular.copy(api.json5_11.champions[i]);
+                champ.numItems = 0;
+                champ.queues = [];
+
+                if(champ.normal && champ.normal.items){ champ.queues.push['Normal']; champ.numItems += champ.normal.items.length; }
+                if(champ.ranked && champ.ranked.items){ champ.queues.push['Ranked']; champ.numItems += champ.ranked.items.length; }
+
+                delete champ.normal;
+                delete champ.ranked;
+
+                if(! _.some(arrayAux, { id: champ.id }))
+                    arrayAux.push(champ);
+            }
+        }
+        return arrayAux;
+    };
+
     api.getItems = function () { // options: { version: 11 o 14, queue: 0, 1 (normal, ranked), league: 0 - 7 }
         if (!api.json5_11 || !api.json5_14) // if not loaded, exit
             return;
 
-        var jsonTarget = (api.filters.items.version == 11 ? 'json5_11' : 'json5_14');
+        var jsonTarget = (api.filters.items.version == '5.11' ? 'json5_11' : 'json5_14');
 
         var arrayAux = angular.copy(api[jsonTarget].items);
 
         var queue = api.filters.items.queue.toLowerCase();
-        var league = arrayLeagues.indexOf(api.filters.items.league.toLowerCase());
+        //var league = arrayLeagues.indexOf(api.filters.items.league.toLowerCase());
 
         // Filter queue
         for (var i in arrayAux) {
@@ -78,18 +107,18 @@ angular.module('myApp').factory('ChartSvc', function ($http, $rootScope) {
 
             // If exists that queue
             if (item[queue]) {
-                if (league == -1) // no league setted
-                {
-                    item.winrate = item[queue].winrate;
-                    item.pickrate = item[queue].pickrate;
-                }
-                else {
-                    var leagueItem = _.find(item[queue].leagues, {id: league});
-                    if (leagueItem) {
-                        item.winrate = item[queue].winrate;
-                        item.pickrate = item[queue].pickrate;
-                    }
-                }
+                //if (league == -1) // no league setted
+                //{
+                item.winrate = item[queue].winrate;
+                item.pickrate = item[queue].pickrate;
+                //}
+                //else {
+                //    var leagueItem = _.find(item[queue].leagues, {id: league});
+                //    if (leagueItem) {
+                //        item.winrate = item[queue].winrate;
+                //        item.pickrate = item[queue].pickrate;
+                //    }
+                //}
             }
             delete item.normal;
             delete item.ranked;
@@ -100,7 +129,6 @@ angular.module('myApp').factory('ChartSvc', function ($http, $rootScope) {
         api.data.itemsChart.pickrate = [_.map(arrayAux, 'pickrate')];
         api.data.itemsChart.winrate = [_.map(arrayAux, 'winrate')];
 
-        console.log('slkjdfsaljk')
         $rootScope.$broadcast('items-loaded');
     };
 

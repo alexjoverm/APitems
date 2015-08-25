@@ -34,9 +34,9 @@
     <script src="vendor/less.js"></script>
 </head>
 
-<body ng-app="myApp">
+<body ng-app="myApp" >
 
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top" ng-controller="NavbarCtrl">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
             <span class="sr-only">Nav</span>
@@ -48,14 +48,17 @@
     </div>
     <div id="menu" class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
-            <li><a href="#/champions">Champions</a></li>
-            <li><a href="#/">About</a></li>
+            <li><a ng-class="{ active: isActive('/champions')}" href="#/champions">Champions</a></li>
+            <li><a ng-class="{ active: isActive('/about')}" href="#/">About</a></li>
         </ul>
     </div>
 </nav>
+<div class="background">
+    <img src="images/fondo5.jpg">
+</div>
 
-
-<div class="container">
+<div class="container" >
+    
     <ng-view class="view-container"></ng-view>
 </div>
 
