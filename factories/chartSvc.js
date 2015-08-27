@@ -20,7 +20,7 @@ angular.module('myApp').factory('ChartSvc', function ($http, $rootScope) {
     api.filters = {
         items    : {
             queue  : 'Normal',
-            //league : '--All--',
+            league : '--All--',
             version: '5.11'
         },
         champions: {
@@ -60,31 +60,44 @@ angular.module('myApp').factory('ChartSvc', function ($http, $rootScope) {
     };
 
 
+    api.getChampions = function () {
 
+        var jsonTarget = (api.filters.champions.version == '5.11' ? 'json5_11' : 'json5_14');
 
-    api.getChampions = function(){
-        var arrayAux = [];
-        var i = 0;
+        var arrayAux = angular.copy(api[jsonTarget].champions);
+        var queue = api.filters.champions.queue.toLowerCase();
+        var league = arrayLeagues.indexOf(api.filters.champions.league.toLowerCase());
 
-        for (var v in versions){
+        for (var i in arrayAux) {
+            var champ = arrayAux[i];
+            champ.numItems = 0;
+            champ.queues = [];
 
-            console.log(v)
-            console.log(versions[v])
-            for (i in api['json'+versions[v]].champions){
-                var champ = angular.copy(api.json5_11.champions[i]);
-                champ.numItems = 0;
-                champ.queues = [];
-
-                if(champ.normal && champ.normal.items){ champ.queues.push['Normal']; champ.numItems += champ.normal.items.length; }
-                if(champ.ranked && champ.ranked.items){ champ.queues.push['Ranked']; champ.numItems += champ.ranked.items.length; }
-
-                delete champ.normal;
-                delete champ.ranked;
-
-                if(! _.some(arrayAux, { id: champ.id }))
-                    arrayAux.push(champ);
+            if (champ[queue]) {
+                if (league == -1) // no league set
+                {
+                    champ.winrate = champ[queue].winrate;
+                    champ.pickrate = champ[queue].pickrate;
+                    champ.banrate = champ[queue].banrate;
+                }
+                else {
+                    var leagueItem = _.find(champ[queue].leagues, {id: league});
+                    if (leagueItem) {
+                        champ.winrate = champ[queue].winrate;
+                        champ.pickrate = champ[queue].pickrate;
+                        champ.banrate = champ[queue].banrate;
+                    }
+                }
             }
+
+
+            delete champ.normal;
+            delete champ.ranked;
+
+            if (!_.some(arrayAux, {id: champ.id}))
+                arrayAux.push(champ);
         }
+
         return arrayAux;
     };
 
@@ -97,7 +110,7 @@ angular.module('myApp').factory('ChartSvc', function ($http, $rootScope) {
         var arrayAux = angular.copy(api[jsonTarget].items);
 
         var queue = api.filters.items.queue.toLowerCase();
-        //var league = arrayLeagues.indexOf(api.filters.items.league.toLowerCase());
+        var league = arrayLeagues.indexOf(api.filters.items.league.toLowerCase());
 
         // Filter queue
         for (var i in arrayAux) {
@@ -107,18 +120,18 @@ angular.module('myApp').factory('ChartSvc', function ($http, $rootScope) {
 
             // If exists that queue
             if (item[queue]) {
-                //if (league == -1) // no league setted
-                //{
-                item.winrate = item[queue].winrate;
-                item.pickrate = item[queue].pickrate;
-                //}
-                //else {
-                //    var leagueItem = _.find(item[queue].leagues, {id: league});
-                //    if (leagueItem) {
-                //        item.winrate = item[queue].winrate;
-                //        item.pickrate = item[queue].pickrate;
-                //    }
-                //}
+                if (league == -1) // no league setted
+                {
+                    item.winrate = item[queue].winrate;
+                    item.pickrate = item[queue].pickrate;
+                }
+                else {
+                    var leagueItem = _.find(item[queue].leagues, {id: league});
+                    if (leagueItem) {
+                        item.winrate = item[queue].winrate;
+                        item.pickrate = item[queue].pickrate;
+                    }
+                }
             }
             delete item.normal;
             delete item.ranked;

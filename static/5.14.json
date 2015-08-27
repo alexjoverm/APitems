@@ -87,6 +87,10 @@
       "id"     : 32459,
       "name"   : "Babalunga",
       "img_url": "images/img1.png",
+      "toprate": 7,
+      "midrate": 63,
+      "botrate": 50,
+      "junglerate": 30,        
       "normal" : {
         "pickrate": 77.38473,
         "banrate" : 46.234232,
@@ -171,10 +175,14 @@
       "id"     : 12345,
       "name"   : "Mordiscona",
       "img_url": "images/img2.png",
+      "toprate": 13,
+      "midrate": 50,
+      "botrate": 40,
+      "junglerate": 16,         
       "normal" : {
-        "pickrate": 92.38473,
-        "banrate" : 38.234232,
-        "winrate" : 53.45645,
+        "pickrate": 12.38473,
+        "banrate" : 39.234232,
+        "winrate" : 4.45645,
         "items"  : [
           {
             "id"      : 555,

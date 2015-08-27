@@ -1,32 +1,33 @@
-<section class="main row" style="border-style: solid;">
-    <div class="col-md-2" >
+<section class="main row top-section-detaills">
+    <div class="col-md-2">
         <img src="http://ddragon.leagueoflegends.com/cdn/5.2.1/img/champion/Aatrox.png" alt="Description"/>
     </div>
-    <div class="col-md-8" >
+    <div class="col-md-6" >
         <h3>Nombre del campeon</h3>
         <h4>Subnombre: </h4>
     </div>
-    <div class="col-md-2" >
-        <h3>grafico de posiciones</h3>
+    <div class="col-md-4">
+        <canvas  id="radar" class="chart chart-radar" data="dataRadar" labels="labelsRadar" options="Options"></canvas> 
     </div>
 </section>
-
-<div class="btn-group">
-        <label class="btn btn-primary">Normal</label>
-        <label class="btn btn-primary">Ranked</label>
-</div>
-<div class="btn-group">
-    <select ng-model="filters.league">
-        <option>--All--</option>
-        <option>Unranked</option>
-        <option>Bronze</option>
-        <option>Silver</option>
-        <option>Gold</option>
-        <option>Platinium</option>
-        <option>Diamond</option>
-        <option>Master</option>
-        <option>Challenger</option>
-    </select>
+<div class="form-inline lc-buttons">
+    <div class="btn-group">
+            <label class="btn btn-primary">Normal</label>
+            <label class="btn btn-primary">Ranked</label>
+    </div>
+    <div class="form-group">
+        <select class="form-control" ng-model="filters.league">
+            <option>--All--</option>
+            <option>Unranked</option>
+            <option>Bronze</option>
+            <option>Silver</option>
+            <option>Gold</option>
+            <option>Platinium</option>
+            <option>Diamond</option>
+            <option>Master</option>
+            <option>Challenger</option>
+        </select>
+    </div>
 </div>
 
 <section class="chart-section">
@@ -35,8 +36,7 @@
 
         <tabset class="lc-tabs">
             <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disable="tab.disabled">
-                <canvas ng-if="tab.active" width="4" height="1" class="chart chart-bar" data="tab.data"
-                        labels="labels" options="options"></canvas>
+                <canvas id="bar"  width="4" height="1" class="chart chart-bar" data="dataBar" labels="labelsBar"></canvas> 
             </tab>
         </tabset>
 

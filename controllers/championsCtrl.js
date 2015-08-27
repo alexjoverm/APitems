@@ -1,8 +1,33 @@
-angular.module('myApp').controller('ChampionsCtrl', function ($scope, ChartSvc) {
+angular.module('myApp').controller('ChampionsCtrl', function ($scope, $location, ChartSvc) {
 
-    //$scope.filters = ChartSvc.filters.items;
+
+    // Filters
+    $scope.filters = ChartSvc.filters.champions;
+
+    // Data
     $scope.champions = ChartSvc.getChampions();
-    console.log($scope.champions)
+
+    $scope.order = {
+        field: 'name',
+        reverse: false
+    };
+
+    $scope.Order = function(field){
+        if($scope.order.field != field)
+            $scope.order.reverse = false;
+        else
+            $scope.order.reverse = !$scope.order.reverse;
+
+        $scope.order.field = field;
+    };
+
+    $scope.GoTo = function(id){
+        $location.path('/champions/' + id);
+    };
+
+    $scope.$watch('filters', function(){
+        $scope.champions = ChartSvc.getChampions();
+    }, true);
 
 
 });

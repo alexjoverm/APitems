@@ -42,13 +42,13 @@
             <thead>
             <tr>
                 <th></th>
-                <th>Name</th>
-                <th>Win rate (%)</th>
-                <th>Pick rate (%)</th>
+                <th><a href="" ng-class="{'active': order.field == 'name'}" ng-click="Order('name')"><i class="glyphicon" ng-show="order.field == 'name'" ng-class="{'glyphicon-chevron-up': !order.reverse, 'glyphicon-chevron-down': order.reverse}"></i>Name</a></th>
+                <th><a href="" ng-class="{'active': order.field == 'winrate'}" ng-click="Order('winrate')"><i class="glyphicon" ng-show="order.field == 'winrate'" ng-class="{'glyphicon-chevron-up': !order.reverse, 'glyphicon-chevron-down': order.reverse}"></i>Win rate (%)</a></th>
+                <th><a href="" ng-class="{'active': order.field == 'pickrate'}" ng-click="Order('pickrate')"><i class="glyphicon" ng-show="order.field == 'pickrate'" ng-class="{'glyphicon-chevron-up': !order.reverse, 'glyphicon-chevron-down': order.reverse}"></i>Pick rate (%)</a></th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="item in items">
+            <tr ng-repeat="item in items | orderBy:order.field:order.reverse">
                 <td><img class="icon" ng-src="{{item.img_url}}" alt=""/></td>
                 <td>{{item.name}}</td>
                 <td>{{item.winrate | number:2 }}</td>
