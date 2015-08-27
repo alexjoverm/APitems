@@ -64,38 +64,40 @@ angular.module('myApp').factory('ChartSvc', function ($http, $rootScope) {
 
         var jsonTarget = (api.filters.champions.version == '5.11' ? 'json5_11' : 'json5_14');
 
-        var arrayAux = angular.copy(api[jsonTarget].champions);
+        var arrayAux = [];
+        var arrTarget = api[jsonTarget].champions;
         var queue = api.filters.champions.queue.toLowerCase();
+
         var league = arrayLeagues.indexOf(api.filters.champions.league.toLowerCase());
 
-        for (var i in arrayAux) {
-            var champ = arrayAux[i];
-            champ.numItems = 0;
-            champ.queues = [];
+        for (var i in arrTarget) {
+            var champ = {};
+            champ.id = arrTarget[i].id;
+            champ.name = arrTarget[i].name;
+            champ.img = arrTarget[i].img;
+            champ.winrate = 0;
+            champ.pickrate = 0;
+            champ.banrate = 0;
+            champ.kda = 0;
 
-            if (champ[queue]) {
-                if (league == -1) // no league set
-                {
-                    champ.winrate = champ[queue].winrate;
-                    champ.pickrate = champ[queue].pickrate;
-                    champ.banrate = champ[queue].banrate;
-                }
-                else {
-                    var leagueItem = _.find(champ[queue].leagues, {id: league});
+            if (arrTarget[i][queue]) {
+                champ.winrate = arrTarget[i][queue].winrate;
+                champ.pickrate = arrTarget[i][queue].pickrate;
+                champ.banrate = arrTarget[i][queue].banrate;
+                champ.kda = arrTarget[i][queue].kda;
+
+                if (league != -1) {
+                    var leagueItem = _.find(arrTarget[i][queue].leagues, {id: league});
                     if (leagueItem) {
-                        champ.winrate = champ[queue].winrate;
-                        champ.pickrate = champ[queue].pickrate;
-                        champ.banrate = champ[queue].banrate;
+                        champ.winrate = leagueItem.winrate;
+                        champ.pickrate = leagueItem.pickrate;
+                        champ.banrate = leagueItem.banrate;
+                        champ.kda = leagueItem.kda;
                     }
                 }
             }
 
-
-            delete champ.normal;
-            delete champ.ranked;
-
-            if (!_.some(arrayAux, {id: champ.id}))
-                arrayAux.push(champ);
+            arrayAux.push(champ);
         }
 
         return arrayAux;
