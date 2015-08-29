@@ -1,12 +1,12 @@
 <div class="col-sm-12">
 
     <section class="chart-section">
-        <h1>APItems statistics</h1>
+        <h1 align="center">APItems statistics</h1>
         <div fixed-height=".tab-pane.active" extra-item=".nav-tabs">
 
             <tabset class="lc-tabs">
                 <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disable="tab.disabled">
-                    <canvas ng-if="tab.active" width="4" height="1" class="chart chart-bar" data="tab.data"
+                    <canvas ng-if="tab.active" width="4" height="2" class="chart chart-bar" data="tab.data"
                             labels="labels" options="options"></canvas>
                 </tab>
             </tabset>
@@ -42,6 +42,7 @@
             <thead>
             <tr>
                 <th></th>
+                <th><a href="" ng-class="{'active': order.field == 'id'}" ng-click="Order('id')"><i class="glyphicon" ng-show="order.field == 'id'" ng-class="{'glyphicon-chevron-up': !order.reverse, 'glyphicon-chevron-down': order.reverse}"></i>ID</a></th>
                 <th><a href="" ng-class="{'active': order.field == 'name'}" ng-click="Order('name')"><i class="glyphicon" ng-show="order.field == 'name'" ng-class="{'glyphicon-chevron-up': !order.reverse, 'glyphicon-chevron-down': order.reverse}"></i>Name</a></th>
                 <th><a href="" ng-class="{'active': order.field == 'winrate'}" ng-click="Order('winrate')"><i class="glyphicon" ng-show="order.field == 'winrate'" ng-class="{'glyphicon-chevron-up': !order.reverse, 'glyphicon-chevron-down': order.reverse}"></i>Win rate (%)</a></th>
                 <th><a href="" ng-class="{'active': order.field == 'pickrate'}" ng-click="Order('pickrate')"><i class="glyphicon" ng-show="order.field == 'pickrate'" ng-class="{'glyphicon-chevron-up': !order.reverse, 'glyphicon-chevron-down': order.reverse}"></i>Pick rate (%)</a></th>
@@ -49,7 +50,8 @@
             </thead>
             <tbody>
             <tr ng-repeat="item in items | orderBy:order.field:order.reverse">
-                <td><img class="icon" ng-src="{{item.img_url}}" alt=""/></td>
+                <td><img class="icon" ng-src="http://ddragon.leagueoflegends.com/cdn/5.14.1/img/item/{{item.id}}.png" alt=""/></td>
+                <td>{{item.id}}</td>
                 <td>{{item.name}}</td>
                 <td>{{item.winrate | number:2 }}</td>
                 <td>{{item.pickrate | number:2 }}</td>

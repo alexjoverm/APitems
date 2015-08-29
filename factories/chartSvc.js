@@ -1,9 +1,85 @@
-angular.module('myApp').factory('ChartSvc', function ($http, $rootScope) {
+angular.module('myApp').factory('ChartSvc', function ($http, $rootScope, $location) {
 
     // private
     var arrayQueues = ['normal', 'ranked'];
     var arrayLeagues = ['unranked', 'bronze', 'silver', 'gold', 'platinium', 'diamond', 'master', 'challenger'];
     var versions = ['5_11', '5_14'];
+
+    function AddItems(champion){
+        var v5_11 = [];
+
+        for(var i in champion.v5_11.normal.leagues){
+            var league = champion.v5_11.normal.leagues[i];
+            for(var j in league.items){
+                var item = _.merge({}, league.items[i]);
+                var index = _.findIndex(v5_11, {id: item.id});
+                if(index != -1){
+                    if(item.pickrate > v5_11[index].pickrate)
+                        v5_11[index] = item;
+                }
+                else
+                    v5_11.push(item);
+            }
+        }
+        for(var i in champion.v5_11.ranked.leagues){
+            var league = champion.v5_11.ranked.leagues[i];
+            for(var j in league.items){
+                var item = _.merge({}, league.items[i]);
+                var index = _.findIndex(v5_11, {id: item.id});
+                if(index != -1){
+                    if(item.pickrate > v5_11[index].pickrate)
+                        v5_11[index] = item;
+                }
+                else
+                    v5_11.push(item);
+            }
+        }
+
+        var v5_14 = [];
+
+        for(var i in champion.v5_14.normal.leagues){
+            var league = champion.v5_14.normal.leagues[i];
+            for(var j in league.items){
+                var item = _.merge({}, league.items[i]);
+                var index = _.findIndex(v5_14, {id: item.id});
+                if(index != -1){
+                    if(item.pickrate > v5_14[index].pickrate)
+                        v5_14[index] = item;
+                }
+                else
+                    v5_14.push(item);
+            }
+        }
+        for(var i in champion.v5_14.ranked.leagues){
+            var league = champion.v5_14.ranked.leagues[i];
+            for(var j in league.items){
+                var item = _.merge({}, league.items[i]);
+                var index = _.findIndex(v5_14, {id: item.id});
+                if(index != -1){
+                    if(item.pickrate > v5_14[index].pickrate)
+                        v5_14[index] = item;
+                }
+                else
+                    v5_14.push(item);
+            }
+        }
+
+        v5_11.sort(function (a, b) {
+            if (a.pickrate > b.pickrate) return 1;
+            else return -1;
+        });
+        v5_14.sort(function (a, b) {
+            if (a.pickrate > b.pickrate) return 1;
+            else return -1;
+        });
+
+        if(v5_11.length > 5) v5_11.length = 5;
+        if(v5_14.length > 5) v5_14.length = 5;
+
+        champion.v5_11.items = v5_11;
+        champion.v5_14.items = v5_14;
+    }
+
 
     // public
     var api = {};
@@ -51,6 +127,7 @@ angular.module('myApp').factory('ChartSvc', function ($http, $rootScope) {
     api.loadJsons = function () {
         $http.get('static/5.11.json').success(function (data) {
             api.json5_11 = data;
+            console.log(data.champions[0])
             $rootScope.$broadcast('ChartSvc:jsonLoaded', ++api.config.jsonLoaded);
         });
         $http.get('static/5.14.json').success(function (data) {
@@ -60,7 +137,47 @@ angular.module('myApp').factory('ChartSvc', function ($http, $rootScope) {
     };
 
 
+    api.getChampion = function (id) {
+
+        if(api.config.jsonLoaded < 2) {
+            $location.path('/');
+            return;
+        }
+
+        var arr511 = api.json5_11.champions;
+        var arr514 = api.json5_14.champions;
+
+        console.log(id);
+        console.log(arr511[0]);
+        console.log(arr514[0]);
+
+        var aux511 = _.merge({}, _.find(arr511, { 'id' : parseInt(id)}));
+        var aux514 = _.merge({}, _.find(arr514, { 'id' : parseInt(id)}));
+
+        var champion = _.pick(aux511, ['id', 'name', 'subtitle', 'img']);
+
+        champion.v5_11 = {
+            radar: [[aux511.jungleRate, aux511.midRate, aux511.botRate, aux511.topRate]],
+            normal: aux511.normal,
+            ranked: aux511.ranked
+        };
+        champion.v5_14 = {
+            radar: [[aux514.jungleRate, aux514.midRate, aux514.botRate, aux514.topRate]],
+            normal: aux514.normal,
+            ranked: aux514.ranked
+        };
+
+        AddItems(champion);
+        console.log(champion)
+        return champion;
+    };
+
     api.getChampions = function () {
+
+        if(api.config.jsonLoaded < 2) {
+            $location.path('/');
+            return;
+        }
 
         var jsonTarget = (api.filters.champions.version == '5.11' ? 'json5_11' : 'json5_14');
 
@@ -104,47 +221,52 @@ angular.module('myApp').factory('ChartSvc', function ($http, $rootScope) {
     };
 
     api.getItems = function () { // options: { version: 11 o 14, queue: 0, 1 (normal, ranked), league: 0 - 7 }
-        if (!api.json5_11 || !api.json5_14) // if not loaded, exit
-            return;
 
-        var jsonTarget = (api.filters.items.version == '5.11' ? 'json5_11' : 'json5_14');
+        if(api.config.jsonLoaded == 2){
+            var jsonTarget = (api.filters.items.version == '5.11' ? 'json5_11' : 'json5_14');
+            var queue = api.filters.items.queue.toLowerCase();
+            var league = arrayLeagues.indexOf(api.filters.items.league.toLowerCase());
 
-        var arrayAux = angular.copy(api[jsonTarget].items);
+            var arrayAux = [];
 
-        var queue = api.filters.items.queue.toLowerCase();
-        var league = arrayLeagues.indexOf(api.filters.items.league.toLowerCase());
 
-        // Filter queue
-        for (var i in arrayAux) {
-            item = arrayAux[i];
-            item.winrate = 0;
-            item.pickrate = 0;
+            // Filter queue
+            for (var i in api[jsonTarget].items) {
+                var item = {};
+                item.id = api[jsonTarget].items[i].id;
+                item.name = api[jsonTarget].items[i].name;
+                item.img = api[jsonTarget].items[i].img;
+                item.winrate = 0;
+                item.pickrate = 0;
 
-            // If exists that queue
-            if (item[queue]) {
-                if (league == -1) // no league setted
-                {
-                    item.winrate = item[queue].winrate;
-                    item.pickrate = item[queue].pickrate;
-                }
-                else {
-                    var leagueItem = _.find(item[queue].leagues, {id: league});
-                    if (leagueItem) {
-                        item.winrate = item[queue].winrate;
-                        item.pickrate = item[queue].pickrate;
+                // If exists that queue
+                if (api[jsonTarget].items[i][queue]) {
+
+                    item.winrate = api[jsonTarget].items[i][queue].winrate;
+                    item.pickrate = api[jsonTarget].items[i][queue].pickrate;
+
+                    if (league != -1) {
+                        var leagueItem = _.find(api[jsonTarget].items[i][queue].leagues, {id: league});
+                        if (leagueItem) {
+                            item.winrate = leagueItem.winrate;
+                            item.pickrate = leagueItem.pickrate;
+                        }
                     }
                 }
+                arrayAux.push(item);
             }
-            delete item.normal;
-            delete item.ranked;
+
+            api.data.items = arrayAux;
+            api.data.items.sort(function (a, b) {
+                if (a.name > b.name) return 1;
+                else return -1;
+            });
+            api.data.itemsChart.labels = _.map(arrayAux, 'name');
+            api.data.itemsChart.pickrate = [_.map(arrayAux, 'pickrate')];
+            api.data.itemsChart.winrate = [_.map(arrayAux, 'winrate')];
+
+            $rootScope.$broadcast('items-loaded');
         }
-
-        api.data.items = arrayAux;
-        api.data.itemsChart.labels = _.map(arrayAux, 'name');
-        api.data.itemsChart.pickrate = [_.map(arrayAux, 'pickrate')];
-        api.data.itemsChart.winrate = [_.map(arrayAux, 'winrate')];
-
-        $rootScope.$broadcast('items-loaded');
     };
 
     return api;

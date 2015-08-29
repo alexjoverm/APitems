@@ -57,7 +57,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="champion in filtered = (champions | orderBy:order.field:order.reverse | filter:searchChamp)" ng-click="GoTo(champion.name)">
+        <tr ng-repeat="champion in filtered = (champions | orderBy:order.field:order.reverse | filter:searchChamp)" ng-click="GoTo(champion.id)">
             <td><img class="icon" ng-src="{{champion.img}}" alt=""/></td>
             <td>{{champion.id}}</td>
             <td>{{champion.name}}</td>

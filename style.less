@@ -1,6 +1,13 @@
 @cl-main: #9333f9;
-@cl-panel: #32373E;
-
+@cl-panel: #1a1e23;
+@font-face{
+    font-family:"fuente1";
+    src: url(fonts/Walkway.ttf) format("truetype");
+}
+@font-face{
+    font-family:"fuente2";
+    src: url(fonts/Gauntlet.ttf) format("truetype");
+}
 .view-container{
     display: block;
     overflow: hidden;
@@ -19,7 +26,8 @@
     }  
 }
 .top-section-detaills{
-    background-color:rgba(0, 0, 0, 0.8); 
+    background-color:rgba(0, 0, 0, 0.8);
+    padding: 12px;
     h3{
         margin-top: 30px;
     }
@@ -30,6 +38,8 @@
     }
 }
 .background {
+    background-image: url(images/fondo.jpg);
+    background-position: center;
     background-color: black;
     position: fixed;
     width: 100%;
@@ -76,17 +86,36 @@
 }
 
 .chart-section{
-    h1{
-        margin-bottom: 40px;
+    h1{    
+    font-family: "fuente2";
+    font-size: 400%;
+    color: white;
+    margin-bottom: 40px;
     }
+    tabset{
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+}
+.chart-sectionDetaills{
+    margin-top: 15px;
+
+}
+.filters-statistics{
+    background-color: rgba(0, 0, 0, 0.8);
 }
 .list-section{
-  img{ width: 40px; }
+  img{ 
+      width: 40px; 
+  }
   table{
       background-color: rgba(0, 0, 0, 0.8);
-    td{ vertical-align: middle !important; }
+    td{ 
+        vertical-align: middle !important; 
+    }
   }
     h1{
+        font-family: "fuente2";
         color:white;
         font-size: 400%;
     }
@@ -143,9 +172,10 @@ th > a{
   }
 }
 .navbar-fixed-top{
+    font-family: "fuente1";
+    font-size: 24px;
+    letter-spacing: 2px;
     background: rgba(9, 0, 34, 0.6); 
-    
-
 }
 .nav-icon{
     max-width:100px;
@@ -164,3 +194,25 @@ th > a{
     height: 72px;
     padding-top: 0;
 }
+.mayus-name{
+    text-transform: capitalize; 
+}
+
+ //  NUEVO
+
+//.tab-pane{
+  //background-color: @cl-panel;
+//}
+
+.table{
+    background-color: rgba(0, 0, 0, 0.8);
+  caption{
+    text-shadow: 1px 1px 5px #000;
+    text-align: center;
+    font-size: 21px;
+    font-weight: bold;
+    color: WHITE;
+
+  }
+}
+.no-margin{ margin: 0 !important; }

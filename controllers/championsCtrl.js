@@ -5,7 +5,7 @@ angular.module('myApp').controller('ChampionsCtrl', function ($scope, $location,
     $scope.filters = ChartSvc.filters.champions;
 
     // Data
-    //$scope.champions = ChartSvc.getChampions();
+    $scope.champions = ChartSvc.getChampions();
 
     $scope.order = {
         field: 'name',
@@ -26,7 +26,6 @@ angular.module('myApp').controller('ChampionsCtrl', function ($scope, $location,
     };
 
     $scope.$watch('filters', function(){
-        console.log('ajsls')
         $scope.champions = ChartSvc.getChampions();
     }, true);
 

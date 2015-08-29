@@ -22,11 +22,6 @@ angular.module('myApp').controller('ItemsCtrl', function ($scope, $timeout, $win
     };
 
 
-    $scope.tabs = [
-        { title:'WinRate',  data: $scope.winrateData},
-        { title:'PickRate', data: $scope.pickrateData}
-    ];
-
     // Data
 
     $scope.tabs = [
@@ -36,8 +31,13 @@ angular.module('myApp').controller('ItemsCtrl', function ($scope, $timeout, $win
 
     $scope.$on('items-loaded', function(event, args) {
         $scope.updateItems();
-        console.log($scope.itemsChart)
     });
+
+    $scope.$on('ChartSvc:jsonLoaded', function(event, args) {
+        if(args == 2)
+            ChartSvc.getItems();
+    });
+
 
     $scope.updateItems = function(){
         $scope.items = ChartSvc.data.items;
@@ -50,7 +50,7 @@ angular.module('myApp').controller('ItemsCtrl', function ($scope, $timeout, $win
         ChartSvc.getItems();
     }, true);
 
-
+    $scope.updateItems();
 
 });
 
