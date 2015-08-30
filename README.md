@@ -21,7 +21,7 @@ La demo de la aplicación la puedes encontrar aqui: http://loldevelopers.github.
  -Bootstrap  
  -Less  
  -Lodash  
- -Riot Games Api 
+ -Riot Games Api  
  -Charts.js
  
 ## Disclaimer
