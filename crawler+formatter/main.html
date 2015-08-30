@@ -1,0 +1,12 @@
+<p>First crawler will request to RiotGames API the data from given matchIds, then JSON formatter will process the data. Once completed, it will automatically download the JSON result. Check console for more info during the process.</p>
+<button ng-click='start()'>Start</button>
+
+<pre>
+
+    total: {{ info.total }}
+    done: {{ info.done }}
+    failed: {{ info.failed }}
+    current: {{ info.current }}
+    
+    waiting: {{ info.wait }}
+</pre>
