@@ -15,7 +15,7 @@ APItems is a comparison of statistics between 5.11 and 5.14 patches League of Le
 ## Demo  
 The demo application can be found here: http://loldevelopers.github.io/APItems/App/#/  
 
-## Tecnologías usadas  
+## Technologies useds:
 
  -Angularjs  
  -Bootstrap  
