@@ -23,6 +23,7 @@ angular.module('myApp').controller('ChampionsDetailCtrl', function ($scope, $rou
         queue : 'Normal',
         league: 'Gold'
     };
+    $scope.alert = {};
 
 
     $scope.tabs = [
@@ -39,19 +40,13 @@ angular.module('myApp').controller('ChampionsDetailCtrl', function ($scope, $rou
             var league = $scope.filters.league.toLowerCase();
 
             $scope.tabs[3].data = null;
+            $scope.alert.show = false;
+            $scope.alert.version = '';
 
             console.log(league)
 
             // Cambiar array winrate, pickrate, banrate, kda
-            if (league == '--all--') {
-                console.log('all')
-                $scope.tabs[0].data = [[$scope.champion.v5_11[queue].winrate, $scope.champion.v5_14[queue].winrate]];
-                $scope.tabs[1].data = [[$scope.champion.v5_11[queue].pickrate, $scope.champion.v5_14[queue].pickrate]];
-                $scope.tabs[2].data = [[$scope.champion.v5_11[queue].banrate, $scope.champion.v5_14[queue].banrate]];
-                $scope.items11 = $scope.champion.v5_11.items;
-                $scope.items14 = $scope.champion.v5_14.items;
-            }
-            else if ($scope.champion.v5_11[queue].leagues) {
+            if ($scope.champion.v5_11[queue].leagues) {
 
                 var league_11 = _.find($scope.champion.v5_11[queue].leagues, {name: league.toUpperCase()});
                 var league_14 = _.find($scope.champion.v5_14[queue].leagues, {name: league.toUpperCase()});
@@ -62,12 +57,14 @@ angular.module('myApp').controller('ChampionsDetailCtrl', function ($scope, $rou
                     pick1 = league_11.pickrate;
                     ban1 = league_11.banrate;
                     kda1 = league_11.kda;
+                    league_11.items.length = 5;
                 }
                 if (league_14) {
                     win2 = league_14.winrate;
                     pick2 = league_14.pickrate;
                     ban2 = league_14.banrate;
                     kda2 = league_14.kda;
+                    league_14.items.length = 5;
                 }
 
                 $scope.tabs[0].data = [[win1, win2]];
@@ -75,12 +72,24 @@ angular.module('myApp').controller('ChampionsDetailCtrl', function ($scope, $rou
                 $scope.tabs[2].data = [[ban1, ban2]];
                 $scope.tabs[3].data = [[kda1, kda2]];
 
-                league_11.items.length = 5;
-                league_14.items.length = 5;
 
-                $scope.items11 = league_11.items;
-                $scope.items14 = league_14.items;
+
+
+                $scope.items11 = (league_11 ? league_11.items : []);
+                $scope.items14 = (league_14 ? league_14.items : []);
             }
+
+            if($scope.tabs[0].data[0][0] == 0 && $scope.tabs[1].data[0][0] == 0 && $scope.tabs[2].data[0][0] == 0){
+                $scope.alert.show = true;
+                $scope.alert.league = league.charAt(0).toUpperCase() + league.slice(1);
+                $scope.alert.version = '5.11';
+            }
+            if($scope.tabs[0].data[0][1] == 0 && $scope.tabs[1].data[0][1] == 0 && $scope.tabs[2].data[0][1] == 0){
+                $scope.alert.show = true;
+                $scope.alert.league = league.charAt(0).toUpperCase() + league.slice(1);
+                $scope.alert.version = ($scope.alert.version == '' ? '5.14' : '5.11 and 5.14');
+            }
+
 
             $scope.tabs[3].disabled = ($scope.tabs[3].data == null);
         }

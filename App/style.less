@@ -1,13 +1,43 @@
 @cl-main: #9333f9;
+@cl-link: #4CBAFF;
 @cl-panel: #1a1e23;
+
 @font-face{
-    font-family:"fuente1";
-    src: url(fonts/Walkway.ttf) format("truetype");
+    font-family:"title-font";
+    src: url(fonts/Augusta.ttf) format("truetype");
 }
 @font-face{
-    font-family:"fuente2";
-    src: url(fonts/Gauntlet.ttf) format("truetype");
+    font-family:"normal-font";
+    src: url(fonts/Comfortaa-Light.ttf) format("truetype");
 }
+
+html, body{
+  font-family: "normal-font";
+}
+
+h1, h2, h3{
+  font-family: "title-font";
+}
+
+nav.navbar a{
+  font-family: "title-font";
+  letter-spacing: 1px;
+  font-size: 22px;
+}
+
+a, a:hover, a:focus{
+  color: @cl-link;
+}
+
+.nav-tabs a{
+  color: white;
+}
+
+.purple-alert{
+  border: 2px solid @cl-main;
+  background-color: fadeout(@cl-main, 50%);
+}
+
 .view-container{
     display: block;
     overflow: hidden;
@@ -86,8 +116,7 @@
 }
 
 .chart-section{
-    h1{    
-    font-family: "fuente2";
+    h1{
     font-size: 400%;
     color: white;
     margin-bottom: 40px;
@@ -115,7 +144,6 @@
     }
   }
     h1{
-        font-family: "fuente2";
         color:white;
         font-size: 400%;
     }
@@ -172,7 +200,6 @@ th > a{
   }
 }
 .navbar-fixed-top{
-    font-family: "fuente1";
     font-size: 20px;
     letter-spacing: 2px;
     background: rgba(9, 0, 34, 0.9); 
@@ -198,8 +225,7 @@ th > a{
     text-transform: capitalize; 
 }
 footer{
-    
-    font-family: "fuente2";
+
     font-size: 15px;
 }
 .about{
@@ -218,10 +244,8 @@ footer{
         border-width: 10px;
     }
 }
- //  NUEVO
-
 //.tab-pane{
-  //background-color: @cl-panel;
+//  background-color: @cl-panel;
 //}
 
 .table{
