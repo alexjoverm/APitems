@@ -17,6 +17,11 @@ angular.module('myApp').config(function ($routeProvider) {
             controller : 'ChampionsDetailCtrl',
             templateUrl: 'views/championsDetails.html'
         })
+        .when('/about',
+        {
+            controller : 'AboutCtrl',
+            templateUrl: 'views/about.html'
+        })
         .otherwise({redirectTo: '/'});
 
     })
