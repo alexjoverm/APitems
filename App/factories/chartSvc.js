@@ -2,7 +2,7 @@ angular.module('myApp').factory('ChartSvc', function ($http, $rootScope, $locati
 
     // private
     var arrayQueues = ['normal', 'ranked'];
-    var arrayLeagues = ['unranked', 'bronze', 'silver', 'gold', 'platinium', 'diamond', 'master', 'challenger'];
+    var arrayLeagues = ['unranked', 'bronze', 'silver', 'gold', 'platinum', 'diamond', 'master', 'challenger'];
     var versions = ['5_11', '5_14'];
 
     function AddItems(champion){
