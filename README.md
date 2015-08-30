@@ -1,21 +1,21 @@
 # APItems 
-APItems es un comparador de estadísticas entre los parches 5.11 y 5.14 de league of legends. En estos parches hubo una gran cambio en las estadísticas de 16 objetos de poder de habilidad(AP) por lo que nos pareció interesante hacer un estudio de las consecuencias que esto puede haber tenido en el juego. Para ello analizamos las siguientes caracteristicas en sus respectivas versiones:
+APItems is a comparison of statistics between 5.11 and 5.14 patches League of Legends. In these patches there was a big change in the statistics of 16 objects skill power (AP) so we thought interesting to make a study of the impact on the game. We analyzed the following characteristics in their respective releases:  
 
-+ Objetos:  
-  - Winrate por liga y cola.
-  - Pickrate por liga y cola.
-+ Campeones:  
-  - Posiciones mas usadas.
-  - WinRate por liga y cola.
-  - PickRate por liga y cola.
-  - BanRate por liga y cola.
-  - KDA por liga y cola.
-  - Objetos más usados.
++ Items:  
+  - Winrate by league and queue.  
+  - Pickrate by league and queue.  
++ Champions:  
+  - Positions most used.  
+  - Winrate by league and queue.  
+  - Pickrate by league and queue.  
+  - Banrate by league and queue.  
+  - KDA by league and queue.  
+  - Items most used.  
 
 ## Demo  
-La demo de la aplicación la puedes encontrar aqui: http://loldevelopers.github.io/APItems/App/#/
+The demo application can be found here: http://loldevelopers.github.io/APItems/App/#/  
 
-## Tecnologías usadas
+## Technologies useds:
 
  -Angularjs  
  -Bootstrap  
