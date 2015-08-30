@@ -88,7 +88,7 @@ angular.module('myApp').factory('ChartSvc', function ($http, $rootScope, $locati
         jsonLoaded  : 0,
         chartOptions: {
             scaleGridLineColor: 'rgba(255,255,255,0.1)',
-            scaleFontSize     : 13,
+            scaleFontSize     : 15,
             scaleFontColor    : '#ccc'
         }
     };
