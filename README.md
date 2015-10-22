@@ -12,8 +12,8 @@ APItems is a comparison of statistics between 5.11 and 5.14 patches League of Le
   - KDA by league and queue.  
   - Items most used.  
 
-## Demo  
-The demo application can be found here: http://alexjoverm.github.io/APitems/App/  
+## Live demo  
+[Here you can find the APitems demo](http://alexjoverm.github.io/APitems/App/#)  
 
 ## Technologies used:
 
