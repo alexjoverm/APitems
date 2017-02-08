@@ -1,4 +1,7 @@
 # APItems 
+
+**[Live Demo](http://alexjoverm.github.io/APitems/App/#)**
+
 APItems is a comparison of statistics between 5.11 and 5.14 patches League of Legends. In these patches there was a big change in the statistics of 16 objects skill power (AP) so we thought interesting to make a study of the impact on the game. We analyzed the following characteristics in their respective releases:  
 
 + Items:  
@@ -11,9 +14,6 @@ APItems is a comparison of statistics between 5.11 and 5.14 patches League of Le
   - Banrate by league and queue.  
   - KDA by league and queue.  
   - Items most used.  
-
-## Live demo  
-[Here you can find the APitems demo](http://alexjoverm.github.io/APitems/App/#)  
 
 ## Technologies used:
 
